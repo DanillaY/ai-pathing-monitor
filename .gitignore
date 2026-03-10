@@ -1,5 +1,4 @@
 .vscode/
-imgui/
 backends/
 overlay_imgui.so
 overlay.so
