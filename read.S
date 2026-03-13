@@ -29,15 +29,19 @@ module_hook_function:
     pop %rcx
     pop %rax
 
-    jz     .jump_to_target
-    jmp    .continue_flow
+    jz  .jump_to_target
+    jmp .continue_flow
 
     .jump_to_target:
-        movabs $0x019a81b7, %r9
-        jmp    *%r9
+        jmp *.target_addr(%rip)
 
     .continue_flow:
-        movabs $0x019a8012, %r9
-        jmp    *%r9
+        jmp *.continue_addr(%rip)
+
+    .target_addr:
+        .quad 0x019a81b7
+
+    .continue_addr:
+        .quad 0x019a8012
 
 .size module_hook_function, .-module_hook_function
